@@ -27,7 +27,6 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "babel-polyfill": "^6.9.1",
     "deep-extend": "^0.4.1",
     "handlebars": "^4.0.5"
   },
