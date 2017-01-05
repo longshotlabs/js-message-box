@@ -43,7 +43,7 @@ const messageBox = new MessageBox({
 And update the `messages` object as necessary (for example if different packages are adding their own messages for different languages):
 
 ```js
-messageBox.addMessages({
+messageBox.messages({
   en: {
     errorType: '{{name}} is invalid' || function,
     errorType: {
@@ -54,7 +54,7 @@ messageBox.addMessages({
 });
 ```
 
-`addMessages` does a deep extend on the existing messages.
+`messages` does a deep extend on the existing messages.
 
 For any of the ways you can set messages, the message can be either a string or a function that returns a string. If it's a string, it may contain handlebars placeholders for anything in the error object or anything passed in the `context` option of the `message` function. If it's a function, it will receive a single `context` argument that has all the same properties that are available as handlebars variables.
 
