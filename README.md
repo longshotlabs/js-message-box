@@ -162,7 +162,7 @@ new SimpleSchema({
   type: String,
   label: name,
   custom: function(){
-    if ( this.value !== "a name it should equal){
+    if ( this.value !== "a name it should equal"){
       return { type: 'testError', anyField : this.value};
     }
   }
