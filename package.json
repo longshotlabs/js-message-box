@@ -27,8 +27,8 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "deep-extend": "^0.4.1",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "lodash.defaultsdeep": "^4.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
