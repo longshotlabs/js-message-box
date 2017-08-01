@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "deep-extend": "^0.4.1",
-    "handlebars": "^4.0.5"
+    "lodash.template": "^4.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
