@@ -1,6 +1,12 @@
 # MessageBox
 
-A package for defining and getting validation error messages. Meteor apps can pass in `Tracker` to get reactive language selection.
+An NPM package for defining and getting validation error messages in JavaScript. Meteor apps can pass in `Tracker` to get reactive language selection.
+
+## Installation
+
+```bash
+$ npm i --save message-box
+```
 
 ## Usage
 
