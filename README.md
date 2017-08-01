@@ -149,6 +149,47 @@ const message = messageBox.message(error, {
 messageBox.setLanguage('en');
 ```
 
+### Passing Data to the Error Message Context
+
+To return information for an error message to be used in either the error function or in the handlebars message context you can return an object as an error. In the returned object you must have the field type be equal to the name of the error message you want to call. 
+
+#### Example
+
+In your attached schema:
+```
+new SimpleSchema({
+  name: {
+  type: String,
+  label: name,
+  custom: function(){
+    if ( this.value !== "a name it should equal"){
+      return { type: 'testError', anyField : this.value};
+    }
+  }
+});
+```
+
+In your message box custom errors:
+```
+collectionName.simpleSchema().messageBox.messages({
+  en: {
+    testError:  '{{anyField}} is not correct. - {{label}} must be correct.'
+  }
+});
+        
+```
+or:
+```
+collectionName.simpleSchema().messageBox.messages({
+  en: {
+    testError:  function(obj){
+      return `${obj.anyField} is not correct. ${obj.label} must be correct.`
+    }
+  }   
+});
+```
+
+
 ### Reactivity in Meteor
 
 If you use this in a Meteor app, you can make the messages reactive. Pass `Tracker` into the constructor:
