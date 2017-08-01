@@ -27,7 +27,7 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "deep-extend": "^0.4.1",
+    "lodash.defaultsdeep": "^4.6.0",
     "lodash.template": "^4.4.0"
   },
   "devDependencies": {
