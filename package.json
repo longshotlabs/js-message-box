@@ -27,7 +27,7 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "lodash.defaultsdeep": "^4.6.0",
+    "lodash.merge": "^4.6.0",
     "lodash.template": "^4.4.0"
   },
   "devDependencies": {
