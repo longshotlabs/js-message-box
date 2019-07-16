@@ -25,7 +25,7 @@
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.14"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
