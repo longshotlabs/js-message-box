@@ -1,5 +1,9 @@
 # MessageBox Changelog
 
+## 0.2.3
+
+Removed `lodash` dependency in favor of `deep-extend` and `lodash.template`.
+
 ## 0.2.2
 
 Updated `lodash` dependency to latest version
