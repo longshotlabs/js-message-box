@@ -1,5 +1,9 @@
 # MessageBox Changelog
 
+## 0.2.4
+
+Removed `deep-extend` dependency to fix undefined `Buffer` errors
+
 ## 0.2.3
 
 Removed `lodash` dependency in favor of `deep-extend` and `lodash.template`.
