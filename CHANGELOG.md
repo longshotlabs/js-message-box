@@ -1,5 +1,9 @@
 # MessageBox Changelog
 
+## 0.2.5
+
+Fix to message merging
+
 ## 0.2.4
 
 Removed `deep-extend` dependency to fix undefined `Buffer` errors
