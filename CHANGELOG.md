@@ -1,5 +1,9 @@
 # MessageBox Changelog
 
+## 0.2.6
+
+Fix transpiling configuration to support IE11
+
 ## 0.2.5
 
 Fix to message merging

@@ -1,6 +1,6 @@
 {
   "name": "message-box",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A package for defining and getting validation error messages, with support for Meteor Tracker reactivity",
   "author": "Eric Dobbertin <aldeed@gmail.com>",
   "license": "MIT",
