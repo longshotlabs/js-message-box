@@ -1,5 +1,9 @@
 # MessageBox Changelog
 
+## 0.2.7
+
+Fix transpiling configuration to support IE11 (try again)
+
 ## 0.2.6
 
 Fix transpiling configuration to support IE11
