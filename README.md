@@ -167,32 +167,3 @@ const messageBox = new MessageBox({
 ```
 
 Then when you change the language, any call to `messageBox.message()` that does not specify a language and is in a reactive context will rerun.
-
-### Template
-
-By default (and historically) the substitution of strings is made using `{{}}`, you can change this by passing the `interpolate` and` escape` options:
-
-```js
-const messageBox = new MessageBox({
-  messages: { ... },
-  interpolate: /{{{([^\{\}#][\s\S]+?)}}}/g, // default
-  escape: /{{([^\{\}#][\s\S]+?)}}/g; // default
-});
-```
-
-It is also possible (but I would not recommend) to use logic within messages by using the `evaluate` option:
-
-```js
-var SUGGESTED_EVALUATE = require('MessageBox').SUGGESTED_EVALUATE
-// or
-import { SUGGESTED_EVALUATE } from 'MessageBox';
-
-const messageBox = new MessageBox({
-  messages: {
-    en: {
-      conditional: '{{# if (value) { }}true{{# } else { }}false{{# } }}',
-    }
-  },
-  evaluate: SUGGESTED_EVALUATE,
-});
-```
