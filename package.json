@@ -20,29 +20,31 @@
   "main": "./dist/MessageBox.js",
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
   "scripts": {
-    "build": "rm -rf dist/** && babel lib --out-dir dist --ignore 'lib/**/*.tests.js'",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix || true",
-    "prepublishOnly": "npm run lint && npm test && npm run build",
-    "test": "mocha --require @babel/register --recursive 'lib/**/*.tests.js'",
+    "build": "rm -rf dist/** && babel lib --out-dir dist --ignore *.test.js",
+    "lint:fix": "eslint ./lib/. --fix || true",
+    "lint": "eslint ./lib/.",
+    "prepublishOnly": "npm run build",
+    "test": "mocha --require @babel/register --recursive lib/**/*.test.js",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "lodash.template": "^4.5.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/register": "^7.9.0",
-    "babel-eslint": "^10.1.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-import-meta": "^1.0.1",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "expect": "^1.20.2",
-    "mocha": "^7.1.1"
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.0",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/register": "^7.16.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "expect": "1.20.2",
+    "mocha": "^9.1.3"
   }
 }

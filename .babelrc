@@ -1,9 +1,19 @@
 {
   "presets": [
-    "@babel/preset-env"
+    "@babel/env"
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "transform-es2015-modules-commonjs"
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": false
+      }
+    ],
+    [
+      "add-module-exports",
+      {
+        "addDefaultProperty": true
+      }
+    ]
   ]
 }
