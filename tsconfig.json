@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig-base.json",
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "outDir": "dist/esm",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "es2022"
+  }
+}
