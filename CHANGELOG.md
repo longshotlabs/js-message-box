@@ -1,5 +1,10 @@
 # MessageBox Changelog
 
+## 1.0.0
+
+- Update all packages and migrate codebase to TypeScript + ESM
+- Remove `lodash.template` dependency in favor of `lodash-es`
+
 ## 0.2.7
 
 Fix transpiling configuration to support IE11 (try again)
