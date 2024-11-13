@@ -5,7 +5,7 @@ An NPM package for defining and getting validation error messages in JavaScript.
 ## Installation
 
 ```bash
-$ npm i --save message-box
+npm i message-box
 ```
 
 ## Usage
