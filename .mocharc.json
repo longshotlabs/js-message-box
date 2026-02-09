@@ -2,6 +2,6 @@
   "extension": [
     "ts"
   ],
-  "loader": "ts-node/esm",
+  "import": "tsx/esm",
   "spec": "src/**/*.test.ts"
 }

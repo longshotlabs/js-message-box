@@ -1,8 +1,5 @@
 {
   "extends": "./tsconfig-base.json",
-  "ts-node": {
-    "files": true
-  },
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,

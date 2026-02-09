@@ -1,5 +1,3 @@
-import { template } from 'lodash-es'
-
 import merge from './merge.js'
 import { GetMessageOptions, MessageBoxConstructorOptions, MessageFactoryFunction, type MessageList, TrackerDepLike, TrackerLike, ValidationError } from './types.js'
 
@@ -10,6 +8,92 @@ export const DEFAULT_INTERPOLATE = /{{{([^{}#][\s\S]+?)}}}/g
 export const DEFAULT_ESCAPE = /{{([^{}#][\s\S]+?)}}/g
 // https://regex101.com/r/ndDqxg/4
 export const SUGGESTED_EVALUATE = /{{#([^{}].*?)}}/g
+
+// Lightweight template compiler to replace lodash-es/template
+// Supports interpolate, escape, and evaluate blocks using provided regexes.
+// Interpolate inserts raw text; escape inserts HTML-escaped text; evaluate runs JS code blocks.
+type TemplateSettings = {
+  interpolate?: RegExp
+  evaluate?: RegExp
+  escape?: RegExp
+}
+
+const htmlEscapeMap: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+  '`': '&#96;'
+}
+
+function escapeHtml (value: unknown): string {
+  const str = value == null ? '' : String(value)
+  return str.replace(/[&<>"'`]/g, (ch) => htmlEscapeMap[ch])
+}
+
+const stringEscapeMap: Record<string, string> = {
+  "'": "\\'",
+  '\\': '\\\\',
+  '\r': '\\r',
+  '\n': '\\n',
+  '\u2028': '\\u2028',
+  '\u2029': '\\u2029'
+}
+
+function escapeStringLiteral (str: string): string {
+  return str.replace(/[\\'\r\n\u2028\u2029]/g, (ch) => stringEscapeMap[ch] ?? ch)
+}
+
+function compileTemplate (text: string, settings: TemplateSettings = {}): MessageFactoryFunction {
+  const noMatch = /(.)^/
+  const escape = settings.escape ?? noMatch
+  const interpolate = settings.interpolate ?? noMatch
+  const evaluate = settings.evaluate ?? noMatch
+
+  const matcher = new RegExp(
+    [escape.source, interpolate.source, evaluate.source].join('|') + '|$',
+    'g'
+  )
+
+  let index = 0
+  let source = "__p+='"
+
+  text.replace(
+    matcher,
+    function (match: string, esc?: string, interp?: string, evalCode?: string, offset?: number): string {
+      const off = offset as number
+      source += escapeStringLiteral(text.slice(index, off))
+      index = off + match.length
+
+      if (esc !== undefined) {
+        source += "'+((__t=(" + esc.trim() + "))==null?'':__e(__t))+'"
+      } else if (interp !== undefined) {
+        source += "'+((__t=(" + interp.trim() + "))==null?'':__t)+'"
+      } else if (evalCode !== undefined) {
+        source += "';" + evalCode + "\n__p+='"
+      }
+      return match
+    }
+  )
+
+  source += "';\n"
+
+  // Build the function body. Use `with` to allow free variable access like lodash/underscore templates.
+  const functionBody =
+    'var __t, __p = "";\n' +
+    'var __e = escapeHtml;\n' +
+    'with (obj || {}) {\n' +
+    source +
+    '}\n' +
+    'return __p;'
+
+  const render = new Function('obj', 'escapeHtml', functionBody) as (obj: Record<string, unknown>, escapeHtml: (v: unknown) => string) => string
+
+  return function (input: { genericName: string | null, type: string, [prop: string]: unknown }): string {
+    return render(input as Record<string, unknown>, escapeHtml)
+  }
+}
 
 class MessageBox {
   static language: string | null | undefined
@@ -107,7 +191,7 @@ class MessageBox {
     }
 
     if (typeof message === 'string') {
-      message = template(message, {
+      message = compileTemplate(message, {
         interpolate: this.interpolate,
         evaluate: this.evaluate,
         escape: this.escape
