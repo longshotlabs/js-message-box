@@ -8,6 +8,5 @@
   "tabWidth": 2,
   "useTabs": false,
   "printWidth": 100,
-  "sortImports": true,
-  "sortPackageJson": false
+  "sortImports": true
 }
