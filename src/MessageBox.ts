@@ -1,7 +1,15 @@
 import { template } from 'lodash-es'
 
 import merge from './merge.ts'
-import type { GetMessageOptions, MessageBoxConstructorOptions, MessageFactoryFunction, MessageList, TrackerDepLike, TrackerLike, ValidationError } from './types.ts'
+import type {
+  GetMessageOptions,
+  MessageBoxConstructorOptions,
+  MessageFactoryFunction,
+  MessageList,
+  TrackerDepLike,
+  TrackerLike,
+  ValidationError
+} from './types.ts'
 
 // Default lodash templates regular expressions
 // https://regex101.com/r/ce27tA/5
@@ -26,7 +34,7 @@ class MessageBox {
   public readonly tracker: TrackerLike | undefined
   public readonly trackerDep: TrackerDepLike | undefined
 
-  constructor ({
+  constructor({
     escape,
     evaluate,
     initialLanguage,
@@ -48,7 +56,7 @@ class MessageBox {
     this.escape = escape ?? MessageBox.escape ?? DEFAULT_ESCAPE
   }
 
-  clone (): MessageBox {
+  clone(): MessageBox {
     const copy = new MessageBox({
       escape: this.escape,
       evaluate: this.evaluate,
@@ -60,7 +68,13 @@ class MessageBox {
     return copy
   }
 
-  getMessages (language?: string | undefined): { messages: Record<string, string | MessageFactoryFunction | Record<string, string | MessageFactoryFunction>>, language: string } {
+  getMessages(language?: string | undefined): {
+    messages: Record<
+      string,
+      string | MessageFactoryFunction | Record<string, string | MessageFactoryFunction>
+    >
+    language: string
+  } {
     if (language == null) {
       language = this.language
       if (this.trackerDep != null) this.trackerDep.depend()
@@ -70,7 +84,11 @@ class MessageBox {
 
     let messages = this.messageList[language]
     if (messages != null) {
-      if (globalMessages != null) messages = merge({}, globalMessages, messages) as Record<string, string | MessageFactoryFunction | Record<string, string | MessageFactoryFunction>>
+      if (globalMessages != null)
+        messages = merge({}, globalMessages, messages) as Record<
+          string,
+          string | MessageFactoryFunction | Record<string, string | MessageFactoryFunction>
+        >
     } else {
       messages = globalMessages
     }
@@ -83,10 +101,7 @@ class MessageBox {
     }
   }
 
-  message (errorInfo: ValidationError, {
-    context,
-    language
-  }: GetMessageOptions = {}): string {
+  message(errorInfo: ValidationError, { context, language }: GetMessageOptions = {}): string {
     // Error objects can optionally include a preformatted message,
     // in which case we use that.
     if (typeof errorInfo.message === 'string') return errorInfo.message
@@ -123,21 +138,21 @@ class MessageBox {
     })
   }
 
-  messages (messages: MessageList): void {
+  messages(messages: MessageList): void {
     merge(this.messageList, messages)
   }
 
-  setLanguage (language: string): void {
+  setLanguage(language: string): void {
     this.language = language
     if (this.trackerDep != null) this.trackerDep.changed()
   }
 
-  static makeNameGeneric (name: string | null | undefined): string | null {
+  static makeNameGeneric(name: string | null | undefined): string | null {
     if (typeof name !== 'string') return null
     return name.replace(/\.[0-9]+(?=\.|$)/g, '.$')
   }
 
-  static defaults ({
+  static defaults({
     escape,
     evaluate,
     initialLanguage,

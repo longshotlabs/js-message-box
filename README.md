@@ -86,25 +86,21 @@ MessageBox.defaults({
       noDecimal: '{{label}} must be an integer',
       notAllowed: '{{value}} is not an allowed value',
       expectedType: '{{label}} must be of type {{dataType}}',
-      regEx: function ({
-        label,
-        type,
-        regExp,
-      }) {
+      regEx: function ({ label, type, regExp }) {
         // See if there's one where exp matches this expression
-        let msgObj;
+        let msgObj
         if (regExp) {
-          msgObj = _.find(regExpMessages, (o) => o.exp && o.exp.toString() === regExp);
+          msgObj = _.find(regExpMessages, (o) => o.exp && o.exp.toString() === regExp)
         }
 
-        const regExpMessage = msgObj ? msgObj.msg : 'failed regular expression validation';
+        const regExpMessage = msgObj ? msgObj.msg : 'failed regular expression validation'
 
-        return `${label} ${regExpMessage}`;
+        return `${label} ${regExpMessage}`
       },
-      keyNotInSchema: '{{name}} is not allowed by the schema',
-    },
+      keyNotInSchema: '{{name}} is not allowed by the schema'
+    }
   }
-});
+})
 ```
 
 ### Getting a Message
@@ -133,8 +129,8 @@ By default, this function returns the message for the current language as set wi
 
 ```js
 const message = messageBox.message(error, {
-  language: 'pl',
-});
+  language: 'pl'
+})
 ```
 
 #### Context
@@ -144,15 +140,15 @@ In the "Defining Messages" example, the placeholders like `label` and `min` must
 ```js
 const message = messageBox.message(error, {
   context: {
-    label: getSomeLabelFor(error.name),
-  },
-});
+    label: getSomeLabelFor(error.name)
+  }
+})
 ```
 
 ### Changing the Message Language
 
 ```js
-messageBox.setLanguage('en');
+messageBox.setLanguage('en')
 ```
 
 ### Reactivity in Meteor
@@ -185,14 +181,14 @@ It is also possible (but I would not recommend) to use logic within messages by 
 ```js
 var SUGGESTED_EVALUATE = require('MessageBox').SUGGESTED_EVALUATE
 // or
-import { SUGGESTED_EVALUATE } from 'MessageBox';
+import { SUGGESTED_EVALUATE } from 'MessageBox'
 
 const messageBox = new MessageBox({
   messages: {
     en: {
-      conditional: '{{# if (value) { }}true{{# } else { }}false{{# } }}',
+      conditional: '{{# if (value) { }}true{{# } else { }}false{{# } }}'
     }
   },
-  evaluate: SUGGESTED_EVALUATE,
-});
+  evaluate: SUGGESTED_EVALUATE
+})
 ```

@@ -8,7 +8,5 @@
     "moduleResolution": "NodeNext",
     "target": "es2022"
   },
-  "types": [
-    "node"
-  ]
+  "types": ["node"]
 }

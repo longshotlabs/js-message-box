@@ -1,5 +1,12 @@
-export type MessageFactoryFunction = ((input: { genericName: string | null, type: string, [prop: string]: unknown }) => string)
-export type MessageList = Record<string, Record<string, string | MessageFactoryFunction | Record<string, string | MessageFactoryFunction>>>
+export type MessageFactoryFunction = (input: {
+  genericName: string | null
+  type: string
+  [prop: string]: unknown
+}) => string
+export type MessageList = Record<
+  string,
+  Record<string, string | MessageFactoryFunction | Record<string, string | MessageFactoryFunction>>
+>
 
 export interface ValidationError {
   name: string

@@ -8,12 +8,13 @@
  * pulling in a large dependency.
  */
 
-export default function merge (destination: Record<string, unknown>, ...sources: Array<Record<string, unknown>>): Record<string, unknown> {
+export default function merge(
+  destination: Record<string, unknown>,
+  ...sources: Array<Record<string, unknown>>
+): Record<string, unknown> {
   sources.forEach((source) => {
     Object.keys(source).forEach((prop) => {
-      if (
-        source[prop]?.constructor === Object
-      ) {
+      if (source[prop]?.constructor === Object) {
         if (destination[prop]?.constructor !== Object) {
           const temp: Record<string, unknown> = {}
           destination[prop] = temp

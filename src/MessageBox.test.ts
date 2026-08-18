@@ -15,10 +15,12 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('It is required')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('It is required')
   })
 
   it('getting a message in another language works', function () {
@@ -35,10 +37,12 @@ describe('MessageBox', function () {
 
     messageBox.setLanguage('es-ES')
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('Es requerido')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('Es requerido')
   })
 
   it('throws an error if there are no messages for a language', function () {
@@ -72,10 +76,15 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    }, { language: 'es-ES' })).toBe('Es requerido')
+    expect(
+      messageBox.message(
+        {
+          name: 'foo',
+          type: 'required'
+        },
+        { language: 'es-ES' }
+      )
+    ).toBe('Es requerido')
   })
 
   it('template in messages works', function () {
@@ -88,15 +97,19 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('foo is required')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('foo is required')
 
-    expect(messageBox.message({
-      name: 'bar',
-      type: 'number'
-    })).toBe('bar is not a number')
+    expect(
+      messageBox.message({
+        name: 'bar',
+        type: 'number'
+      })
+    ).toBe('bar is not a number')
   })
 
   it('template in messages with html works', function () {
@@ -109,17 +122,21 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: '<bar>',
-      type: 'minNumber',
-      min: 10
-    })).toBe('<strong><bar></strong> must be at least 10')
+    expect(
+      messageBox.message({
+        name: '<bar>',
+        type: 'minNumber',
+        min: 10
+      })
+    ).toBe('<strong><bar></strong> must be at least 10')
 
-    expect(messageBox.message({
-      name: '<bar>',
-      type: 'maxNumber',
-      max: 100
-    })).toBe('<div id="field">&lt;bar&gt;</div> cannot exceed 100')
+    expect(
+      messageBox.message({
+        name: '<bar>',
+        type: 'maxNumber',
+        max: 100
+      })
+    ).toBe('<div id="field">&lt;bar&gt;</div> cannot exceed 100')
   })
 
   it('template with conditional works', function () {
@@ -132,17 +149,21 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      value: true,
-      type: 'conditional'
-    })).toBe('true')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        value: true,
+        type: 'conditional'
+      })
+    ).toBe('true')
 
-    expect(messageBox.message({
-      name: 'foo',
-      value: false,
-      type: 'conditional'
-    })).toBe('false')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        value: false,
+        type: 'conditional'
+      })
+    ).toBe('false')
   })
 
   it('custom interpolate in messages works', function () {
@@ -157,21 +178,27 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('foo is required')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('foo is required')
 
-    expect(messageBox.message({
-      name: 'bar',
-      type: 'number'
-    })).toBe('bar is not a number')
+    expect(
+      messageBox.message({
+        name: 'bar',
+        type: 'number'
+      })
+    ).toBe('bar is not a number')
 
-    expect(messageBox.message({
-      name: 'bar',
-      type: 'maxNumber',
-      max: 100
-    })).toBe('<div id="field">bar</div> cannot exceed 100')
+    expect(
+      messageBox.message({
+        name: 'bar',
+        type: 'maxNumber',
+        max: 100
+      })
+    ).toBe('<div id="field">bar</div> cannot exceed 100')
   })
 
   it('uses the message on error info if provided', function () {
@@ -183,11 +210,13 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required',
-      message: 'This one'
-    })).toBe('This one')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required',
+        message: 'This one'
+      })
+    ).toBe('This one')
   })
 
   it('per-field messages', function () {
@@ -202,15 +231,19 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('FOO')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('FOO')
 
-    expect(messageBox.message({
-      name: 'foo2',
-      type: 'required'
-    })).toBe('DEFAULT')
+    expect(
+      messageBox.message({
+        name: 'foo2',
+        type: 'required'
+      })
+    ).toBe('DEFAULT')
   })
 
   it('per-field messages with array field', function () {
@@ -225,15 +258,19 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo.2.bar',
-      type: 'required'
-    })).toBe('FOO')
+    expect(
+      messageBox.message({
+        name: 'foo.2.bar',
+        type: 'required'
+      })
+    ).toBe('FOO')
 
-    expect(messageBox.message({
-      name: 'foo2.$.bar',
-      type: 'required'
-    })).toBe('DEFAULT')
+    expect(
+      messageBox.message({
+        name: 'foo2.$.bar',
+        type: 'required'
+      })
+    ).toBe('DEFAULT')
   })
 
   it('falls back to global defaults', function () {
@@ -247,10 +284,12 @@ describe('MessageBox', function () {
 
     const messageBox = new MessageBox()
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('It is required')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('It is required')
 
     MessageBox.messages = {} // Reset
   })
@@ -271,10 +310,12 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('Es requerido')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('Es requerido')
 
     MessageBox.language = null
   })
@@ -295,11 +336,13 @@ describe('MessageBox', function () {
       type: 'required'
     })
 
-    expect(spy.calledWith({
-      genericName: 'foo',
-      name: 'foo',
-      type: 'required'
-    })).toBe(true)
+    expect(
+      spy.calledWith({
+        genericName: 'foo',
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe(true)
   })
 
   it('can update by calling messages', function () {
@@ -317,10 +360,12 @@ describe('MessageBox', function () {
       }
     })
 
-    expect(messageBox.message({
-      name: 'foo',
-      type: 'required'
-    })).toBe('new')
+    expect(
+      messageBox.message({
+        name: 'foo',
+        type: 'required'
+      })
+    ).toBe('new')
   })
 
   it('can clone', function () {
