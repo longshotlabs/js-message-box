@@ -1,9 +1,9 @@
-import { describe, it } from 'node:test'
+import { describe, it, mock } from 'node:test'
 
 import { expect } from 'expect'
-import * as sinon from 'sinon'
 
 import MessageBox, { SUGGESTED_EVALUATE } from './MessageBox.ts'
+import type { MessageFactoryFunction } from './types.ts'
 
 describe('MessageBox', function () {
   it('getting a message in the default language works', function () {
@@ -321,12 +321,16 @@ describe('MessageBox', function () {
   })
 
   it('message function is called', function () {
-    const spy = sinon.spy()
+    const spy = mock.fn()
+    const required: MessageFactoryFunction = (input) => {
+      spy(input)
+      return ''
+    }
 
     const messageBox = new MessageBox({
       messages: {
         en: {
-          required: spy
+          required
         }
       }
     })
@@ -336,13 +340,12 @@ describe('MessageBox', function () {
       type: 'required'
     })
 
-    expect(
-      spy.calledWith({
-        genericName: 'foo',
-        name: 'foo',
-        type: 'required'
-      })
-    ).toBe(true)
+    expect(spy.mock.callCount()).toBe(1)
+    expect(spy.mock.calls[0].arguments[0]).toEqual({
+      genericName: 'foo',
+      name: 'foo',
+      type: 'required'
+    })
   })
 
   it('can update by calling messages', function () {

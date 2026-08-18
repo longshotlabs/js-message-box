@@ -44,11 +44,9 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^26.2.0",
-    "@types/sinon": "^17.0.3",
     "expect": "^29.7.0",
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
-    "sinon": "^19.0.2",
     "typescript": "^5.9.2"
   },
   "publishConfig": {
