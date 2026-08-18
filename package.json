@@ -44,7 +44,7 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^26.2.0",
-    "expect": "^29.7.0",
+    "expect": "^30.4.1",
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
     "typescript": "^5.9.2"
