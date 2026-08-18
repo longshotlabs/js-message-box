@@ -1,4 +1,4 @@
-import MessageBox from './MessageBox.js'
+import MessageBox from './MessageBox.ts'
 export default MessageBox
 
-export * from './MessageBox.js'
+export * from './MessageBox.ts'

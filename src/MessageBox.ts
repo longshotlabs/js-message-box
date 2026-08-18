@@ -1,7 +1,7 @@
 import { template } from 'lodash-es'
 
-import merge from './merge.js'
-import { GetMessageOptions, MessageBoxConstructorOptions, MessageFactoryFunction, type MessageList, TrackerDepLike, TrackerLike, ValidationError } from './types.js'
+import merge from './merge.ts'
+import type { GetMessageOptions, MessageBoxConstructorOptions, MessageFactoryFunction, MessageList, TrackerDepLike, TrackerLike, ValidationError } from './types.ts'
 
 // Default lodash templates regular expressions
 // https://regex101.com/r/ce27tA/5

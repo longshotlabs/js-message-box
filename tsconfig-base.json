@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "forceConsistentCasingInFileNames": true,
+    "rewriteRelativeImportExtensions": true,
     "strict": true,
     "skipLibCheck": true,
   },

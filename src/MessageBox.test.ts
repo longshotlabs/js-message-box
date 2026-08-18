@@ -1,7 +1,9 @@
+import { describe, it } from 'node:test'
+
 import { expect } from 'expect'
 import * as sinon from 'sinon'
 
-import MessageBox, { SUGGESTED_EVALUATE } from './MessageBox.js'
+import MessageBox, { SUGGESTED_EVALUATE } from './MessageBox.ts'
 
 describe('MessageBox', function () {
   it('getting a message in the default language works', function () {
