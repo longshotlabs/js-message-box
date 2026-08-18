@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES2015",
+    "rootDir": "src",
+    "types": ["node"],
     "outDir": "dist/cjs"
   }
 }
