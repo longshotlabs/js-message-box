@@ -1,13 +1,13 @@
 {
   "name": "message-box",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "A package for defining and getting validation error messages, with support for Meteor Tracker reactivity",
   "homepage": "https://github.com/longshotlabs/js-message-box",
   "bugs": {
     "url": "https://github.com/longshotlabs/js-message-box/issues"
   },
   "license": "MIT",
-  "author": "Eric Dobbertin <aldeed@gmail.com>",
+  "author": "Dairy State Designs (http://dairystatedesigns.com/)",
   "repository": {
     "type": "git",
     "url": "https://github.com/longshotlabs/js-message-box.git"
@@ -48,11 +48,28 @@
     "expect": "^30.4.1",
     "oxfmt": "^0.63.0",
     "oxlint": "^1.78.0",
+    "semantic-release": "25.0.9",
     "typescript": "^7.0.2"
   },
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead",
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/github",
+        {
+          "successComment": ":tada: This ${issue.pull_request ? 'PR is included' : 'issue has been resolved'} in version ${nextRelease.version} :tada:\n\nThe release is available on:\n- [npm package (@latest dist-tag)](https://www.npmjs.com/package/message-box/v/${nextRelease.version})\n- [GitHub release](https://github.com/longshotlabs/js-message-box/releases/tag/${nextRelease.version})\n\nIf this makes you happy, please consider [becoming a sponsor](https://github.com/sponsors/longshotlabs).\n\nYour **[semantic-release](https://github.com/semantic-release/semantic-release)** bot :package::rocket:"
+        }
+      ]
+    ],
+    "tagFormat": "${version}"
+  },
   "engines": {
-    "node": ">=18",
-    "npm": ">=9"
+    "node": ">=18"
   }
 }
