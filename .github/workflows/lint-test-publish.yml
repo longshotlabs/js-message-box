@@ -27,7 +27,7 @@ jobs:
       - name: Lint code
         run: npm run lint --if-present
 
-  test:
+  typecheck:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,13 +44,37 @@ jobs:
         run: npm i -g npm
       - name: Install package dependencies
         run: npm ci
+      - name: Check types
+        run: npm run check
+
+  test:
+    name: Test (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['22', '24', '26']
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out files
+        uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+      - name: Update to latest NPM version
+        run: npm i -g npm
+      - name: Install package dependencies
+        run: npm ci
       - name: Test code
         run: npm run test --if-present
 
   publish:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' && github.repository_owner == 'longshotlabs' && github.ref == 'refs/heads/main' }}
-    needs: [lint, test]
+    needs: [lint, typecheck, test]
     permissions:
       contents: write # Clone and tag releases
       issues: write # Comment on issues
