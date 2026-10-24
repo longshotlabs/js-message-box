@@ -1,6 +1,5 @@
-import { template } from 'lodash-es'
-
 import merge from './merge.ts'
+import template from './template.ts'
 import type {
   GetMessageOptions,
   MessageBoxConstructorOptions,
@@ -11,7 +10,7 @@ import type {
   ValidationError
 } from './types.ts'
 
-// Default lodash templates regular expressions
+// Default template regular expressions
 // https://regex101.com/r/ce27tA/5
 export const DEFAULT_INTERPOLATE = /{{{([^{}#][\s\S]+?)}}}/g
 // https://regex101.com/r/8sRC8b/8
